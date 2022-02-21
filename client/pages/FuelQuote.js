@@ -1,88 +1,86 @@
-import React, { Component } from 'react'
+import React, { Component , useState} from 'react'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import styles from './FuelQuote.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
-
-class FuelQuote extends Component {
-    // Gallons Requested (numeric, required)
-    // Delivery Address (Non-editable, comes from client profile)
-    // Delivery Date (Calender, date picker)
-    // Suggested Price / gallon (numeric non-editable, price will be calculated by Pricing Module - we are not building pricing module yet)
-    // Total Amount Due (numeric non-editable, calculated (gallons * price))
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            gals: 0,
-            deliveryDate: '',
-            address: "1234 Cullen Blvd",
-            pricegal: 3.50
-        };
-    }
-    handleGallonChange=(event)=>{
-        this.setState({
-            gals: event.target.value
-        })
-    }
-    handleDateChange=(date) =>{
-        this.setState({
-            deliveryDate: date
-        })
-    }
+import Hist from "../components/FuelQuoteTable/FuelQuoteTable"
+const FuelQuote = () => {
     
-    handleSubmit= event =>{
-        alert(`${this.state.gals} ${this.state.deliveryDate}`)
-        // event.preventDefault();
-    }
-    render () {
-        return (
+    const [gallons, setGallons]= useState(0)
+    const [deliveryDate, setdeliveryDate]= useState(new Date())
+    const [address]= useState("1234 Cullen Blvd Houston, TX 77004")
+    const [pricegal]= useState(3.50)
+    const [total, setTotal]=useState(0)
+
+    
+    return (
         <body>
             <ProfileNav/>
             
             
-            {/* <label className={styles.headertext}>Fuel Quote</label> */}
-            <form className={styles.center} onSubmit={this.handleSubmit}>
+            <form className={styles.center}>
             
                 <div>
                     
                     {/* gallons requested */}
                     <label>Gallons Requested<br/></label>
                     <input type="number" 
-                    value={this.state.gals} 
-                    onChange={this.handleGallonChange}/>
+                    value={gallons} 
+                    onChange={(g)=>setGallons(g.target.value)}/>
                     <br/>
                     {/* delivery Address */}
                     <label><br/>Delivery Address<br/></label>
-                    <input address="input" type="text" placeholder="Enter Delivery Address" value= {this.state.address} readOnly= {true}/>
+                    <input address="input" 
+                    type="text" 
+                    placeholder="Enter Delivery Address" 
+                    value= {address} 
+                    readOnly= {true}/>
                     <br/>
                     {/* date picker */}
                     
                     <label><br/>Delivery Date<br/></label>
                     <DatePicker
                     placeholderText="Select Date"
-                    selected={this.state.deliveryDate}
-                    onChange={ this.handleDateChange }
-                    name="deliveryDate"
                     dateFormat="MM/dd/yyyy"
+                    selected={deliveryDate}
+                    onChange={ (d)=>setdeliveryDate(d)}
+                    name="deliveryDate"
+                    
                     />
                     <br/>
 
                     {/* Suggested Price/gal */}
                     <label><br/>Suggested Price/Gallon<br/></label>
-                    <input price="input" type="number" placeholder="Suggested Price" value= {this.state.pricegal} readOnly= {true}/>
+                    <input price="input" 
+                    type="number" 
+                    placeholder="Suggested Price" 
+                    value= {pricegal} 
+                    readOnly= {true}/>
                     <br/>
 
-                    {/* Amount Due */}
+                    {/* Amount Due
                     <label><br/>Amount Due<br/></label>
-                    <input price="input" type="number" placeholder="Total Price" value= {this.state.pricegal} readOnly= {true}/>
+                    <input price="input" 
+                    type="number" 
+                    placeholder="Total Price" 
+                    value= {this.state.pricegal} 
+                    readOnly= {true}/> */}
 
                 </div>
                 <br/>
                 <button type="submit">Submit</button>
             </form>
+            <div className={styles.container}>
+                    <Hist 
+                        name= "Machevin"
+                        address= {address}
+                        gallons= {gallons}
+                        deliveryDate={deliveryDate.toString()}
+                        total= {gallons * pricegal}
+                    />
+                </div>
         </body>
         )
     }
-}
+
 export default FuelQuote;
