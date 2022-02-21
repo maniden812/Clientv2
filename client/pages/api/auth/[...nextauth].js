@@ -27,7 +27,7 @@ providers: [
       if (credentials.username === user.name && credentials.password === user.password) {
         // Any object returned will be saved in `user` property of the JWT
         console.log("credentials matched")
-        return user
+        return true
       } else {
         // If you return null then an error will be displayed advising the user to check their details.
         return null
