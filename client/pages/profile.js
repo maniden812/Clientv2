@@ -82,15 +82,9 @@ class Profile extends Component {
                 // </div>
                 <body>
                     <ProfileNav/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                    
+                    
+                    
 
                 { /* <label className={styles.headertext}>Fuel Quote</label> */ } 
                 <form className = { styles.center } onSubmit = { this.handleSubmit } >

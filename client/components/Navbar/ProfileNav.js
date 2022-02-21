@@ -1,12 +1,9 @@
 import styles from './Navbar.module.css';
 import { useSession, signIn, signOut } from "next-auth/react"
-import { Router, useRouter } from 'next/router'
-
 
 
 export const ProfileNav = () => {
     const {data: session} = useSession()
-    const router = useRouter();
   return (
     <>
       <nav>
