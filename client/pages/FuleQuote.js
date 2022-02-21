@@ -7,7 +7,7 @@ import styles from './FuleQuote.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
 import Hist  from "../components/FuelQuoteTable/FuelQuoteTable"
 
-function FuleQuote(){
+const FuleQuote=()=>{
     
     const [gallons, setGallons]=useState(0)
     const [deliveryDate, setdeliveryDate]=useState(new Date())
@@ -79,18 +79,19 @@ function FuleQuote(){
                         <DatePicker
                         placeholderText="Select Delivery Date"
                         selected={deliveryDate}
-                        onChange={(date) => setdeliveryDate(date)} 
+                        dateFormat="MM/dd/yyyy"
+                        onChange={(date) => setdeliveryDate(JSON.stringify(date))} 
                         
                         />
                                 
                         <br/>
 
-                        {/* Suggested Price/gal
+                        {/* Suggested Price/gal */}
                         <label><br/>Suggested Price/Gallon<br/></label>
-                        <p>{this.state.priceGals}</p>
-                        <br/> */}
+                        <p>{pricegal}</p>
+                        <br/>
 
-                        {/* Amount Due */}
+                        {/* Amount Due
                         <label className={styles.des}><br/>Amount Due<br/></label>
                         
                         <input type="number" 
@@ -98,7 +99,7 @@ function FuleQuote(){
                         onChange={(t)=>setTotal(t.target.value)}
                         readOnly="true"
                         />
-                        <br/>
+                        <br/> */}
                       
 
                     </div>
@@ -110,13 +111,13 @@ function FuleQuote(){
                         name= "Machevin"
                         address= {address}
                         gallons= {gallons}
-                        deliveryDate={deliveryDate}
-                        total= {total}
+                        deliveryDate={JSON.stringify(deliveryDate)}
+                        total= {gallons*pricegal}
                     />
                 </div>
             </div>
         </body>
-        )
-    }
+        );
+    };
 
 export default FuleQuote;
