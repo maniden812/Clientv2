@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-import styles from './FuleQuote.module.css'
+import styles from './FuelQuote.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
 
-class FuleQuote extends Component {
+class FuelQuote extends Component {
     // Gallons Requested (numeric, required)
     // Delivery Address (Non-editable, comes from client profile)
     // Delivery Date (Calender, date picker)
@@ -39,15 +39,6 @@ class FuleQuote extends Component {
         return (
         <body>
             <ProfileNav/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
             
             
             {/* <label className={styles.headertext}>Fuel Quote</label> */}
@@ -94,4 +85,4 @@ class FuleQuote extends Component {
         )
     }
 }
-export default FuleQuote;
+export default FuelQuote;
