@@ -13,7 +13,7 @@ export const ProfileNav = () => {
                 <li className={styles.nav}><a  href="/FuelQuote">Place Order</a></li>
                 <li className={styles.nav}><a  href="/profile">Profile</a></li>
                 <li className={styles.nav}><a  href="/">Order History</a></li>
-                {session ? <li className={styles.nav}><a onClick={() => signOut()}>Sign Out</a></li> : <li className={styles.nav}><a  href="/api/auth/signin">Sign In</a></li>}
+                {session ? <li className={styles.nav}><a onClick={() => signOut({callbackUrl: "/"})}>Sign Out</a></li> : <li className={styles.nav}><a  href="/api/auth/signin">Sign In</a></li>}
 
             </ul>
             
