@@ -1,4 +1,4 @@
-function pricing(a, b) {
+function pricingmodule(a, b) {
     return a + b;
   }
-  module.exports = sum;
+  module.exports = pricingmodule;
