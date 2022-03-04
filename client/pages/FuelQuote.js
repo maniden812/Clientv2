@@ -75,7 +75,7 @@ const FuelQuote = () => {
                         name= "Machevin"
                         address= {address}
                         gallons= {gallons}
-                        deliveryDate={deliveryDate.toString()}
+                        deliveryDate={deliveryDate.toDateString()}
                         total= {gallons * pricegal}
                     />
                 </div>
