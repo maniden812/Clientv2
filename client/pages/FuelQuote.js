@@ -27,7 +27,9 @@ const FuelQuote = () => {
                     {/* gallons requested */}
                     <label>Gallons Requested<br/></label>
                     <input type="number" 
+                    min="0"
                     value={gallons} 
+                    required
                     onChange={(g)=>setGallons(g.target.value)}/>
                     <br/>
                     
@@ -46,6 +48,7 @@ const FuelQuote = () => {
                     placeholderText="Select Date"
                     dateFormat="MM/dd/yyyy"
                     selected={deliveryDate}
+                    required
                     onChange={ (d)=>setdeliveryDate(d)}
                     name="deliveryDate"
                     />
