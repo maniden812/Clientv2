@@ -1,3 +1,4 @@
+
 // function checkProfile() {
 //     var fullName = document.getElementById('fullName').value;
 //     var address1 = document.getElementById('address1').value;
@@ -53,5 +54,4 @@ test('check if values are empty', () => {
     // expect(zipcode).not.toBeNull();
     // expect(zipcode).toBeLessThanOrEqual(9);
     // expect(zipcode).toBeGreaterThanOrEqual(5);
-
 });

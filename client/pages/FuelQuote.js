@@ -4,6 +4,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import styles from './FuelQuote.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
 import Hist from "../components/FuelQuoteTable/FuelQuoteTable"
+
+
 const FuelQuote = () => {
     
     const [gallons, setGallons]= useState(0)
@@ -25,9 +27,12 @@ const FuelQuote = () => {
                     {/* gallons requested */}
                     <label>Gallons Requested<br/></label>
                     <input type="number" 
+                    min="0"
                     value={gallons} 
+                    required
                     onChange={(g)=>setGallons(g.target.value)}/>
                     <br/>
+                    
                     {/* delivery Address */}
                     <label><br/>Delivery Address<br/></label>
                     <input address="input" 
@@ -36,16 +41,16 @@ const FuelQuote = () => {
                     value= {address} 
                     readOnly= {true}/>
                     <br/>
+
                     {/* date picker */}
-                    
                     <label><br/>Delivery Date<br/></label>
                     <DatePicker
                     placeholderText="Select Date"
                     dateFormat="MM/dd/yyyy"
                     selected={deliveryDate}
+                    required
                     onChange={ (d)=>setdeliveryDate(d)}
                     name="deliveryDate"
-                    
                     />
                     <br/>
 
@@ -57,14 +62,6 @@ const FuelQuote = () => {
                     value= {pricegal} 
                     readOnly= {true}/>
                     <br/>
-
-                    {/* Amount Due
-                    <label><br/>Amount Due<br/></label>
-                    <input price="input" 
-                    type="number" 
-                    placeholder="Total Price" 
-                    value= {this.state.pricegal} 
-                    readOnly= {true}/> */}
 
                 </div>
                 <br/>
