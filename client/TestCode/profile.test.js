@@ -25,9 +25,14 @@
 //     }
 // }
 import Profile from '../pages/profile';
+// import TestRenderer from 'react-test-renderer';
+// import { shallow } from 'enzyme';
 //const profilemodule = require('../pages/profile');
 test('check if values are empty', () => {
-    // fullname, address1, address2, city, state, zipcode = profilemodule(fullname, address1, address2, city, state, zipcode);
+    // const wrapper = shallow( < Profile /> );
+    // const instance = wrapper.instance();
+    expect(true).toBe(true);
+    // const [fullname, address1, address2, city, state, zipcode] = Profile(fullname, address1, address2, city, state, zipcode);
 
     // expect(fullname).not.toBeNull();
     // expect(fullname).toBeLessThanOrEqual(50);
@@ -45,5 +50,5 @@ test('check if values are empty', () => {
     // expect(zipcode).not.toBeNull();
     // expect(zipcode).toBeLessThanOrEqual(9);
     // expect(zipcode).toBeGreaterThanOrEqual(5);
-    expect(true).toBe(true);
+
 });
