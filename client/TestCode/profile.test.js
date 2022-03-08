@@ -24,12 +24,15 @@
 //         errorMsg = 'Empty Zipcode\n';
 //     }
 // }
+import React from 'react';
+import { shallow, mount, render } from 'enzyme';
+
 import Profile from '../pages/profile';
 // import TestRenderer from 'react-test-renderer';
 // import { shallow } from 'enzyme';
 //const profilemodule = require('../pages/profile');
 test('check if values are empty', () => {
-    // const wrapper = shallow( < Profile /> );
+     const wrapper = shallow( < Profile /> );
     // const instance = wrapper.instance();
     expect(true).toBe(true);
     // const [fullname, address1, address2, city, state, zipcode] = Profile(fullname, address1, address2, city, state, zipcode);
