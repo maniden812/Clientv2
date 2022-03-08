@@ -1,6 +1,6 @@
 const profilemodule = require('../pages/profile');
 test('check if values are empty', () => {
-    // fullname, address1, address2, city, state, zipcode = profilemodule(fullname, address1, address2, city, state, zipcode);
+    fullname, address1, address2, city, state, zipcode = profilemodule("fullname", "address1", "address2", "city", "TX", 77004);
 
     expect(fullname).not.toBeNull();
     expect(fullname).toBeLessThanOrEqual(50);
