@@ -2,10 +2,10 @@ import React, { Component , useState} from 'react'
 import styles from './profile.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
 // import { ClientRequest } from 'http'
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
-configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() });
 const Profile =()=> {
     const [clients, setClients]=useState()
     const [addFormData, setFormData]= useState({
