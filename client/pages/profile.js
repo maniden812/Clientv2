@@ -7,7 +7,14 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 const Profile =()=> {
-    const [clients, setClients]=useState()
+    const [clients, setClients]=useState({
+        fullname: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zipcode: ''
+    })
     const [addFormData, setFormData]= useState({
         fullname: '',
         address1: '',
