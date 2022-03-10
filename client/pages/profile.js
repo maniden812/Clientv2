@@ -7,7 +7,6 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 Enzyme.configure({ adapter: new Adapter() });
 const Profile =()=> {
-    const [clients, setClients]=useState()
     const [addFormData, setFormData]= useState({
         fullname: '',
         address1: '',
@@ -17,18 +16,7 @@ const Profile =()=> {
         zipcode: ''
     
     })
-    // constructor(props) {
-    //     super(props)
-
-    //     this.state = {
-    //         fullname: '',
-    //         address1: '',
-    //         address2: '',
-    //         city: '',
-    //         state: '',
-    //         zipcode: ''
-    //     }
-    // }
+   
 
     const handleFormChange= (event)=>{
         event.preventDefault();
@@ -42,54 +30,8 @@ const Profile =()=> {
         setFormData(newFormData);
     }
 
-    // // changes value of fullname when user is inputting
-    // const handleFullnameChange = (event) => {
-    //     this.setState({
-    //         fullname: event.target.value
-    //     })
-    // }
-
-    // // changes value of address1 when user is inputting
-    // const handleAddress1 = (event) => {
-    //     this.setState({
-    //         address1: event.target.value
-    //     })
-    // }
-
-    // // changes value of address2 when user is inputting
-    // const handleAddress2 = (event) => {
-    //     this.setState({
-    //         address2: event.target.value
-    //     })
-    // }
-
-    // // changes value of city when user is inputting
-    // const handleCity = (event) => {
-    //     this.setState({
-    //         city: event.target.value
-    //     })
-    // }
-
-    // // changes value of state when user is selecting
-    // handleState = (event) => {
-    //     this.setState({
-    //         state: event.target.value
-    //     })
-    // }
-
-    // // changes value of zipcode when user is selecting
-    // handleZipcode = (event) => {
-    //     this.setState({
-    //         zipcode: event.target.value
-    //     })
-    // }
-
-    //keeps entered info same when confirm is clicked
-    // const handleSubmit = event => {
-    //     alert(`${fullname} ${address1} ${address2} ${city} ${state} ${zipcode}`)
-    //     event.preventDefault()
-    // }
     const handleSubmit = (event) =>{
+        event.preventDefault();
         const newClient= {
             fullname: addFormData.fullname,
             address1: addFormData.address1,
@@ -98,7 +40,7 @@ const Profile =()=> {
             state: addFormData.state,
             zipcode: addFormData.zipcode
         };
-        setClients(newClient);
+        // alert(`${newClient.fullname} ${newClient.address1} ${newClient.address2} ${newClient.city} ${newClient.state} ${newClient.zipcode}`)
     };
 
     return ( 
