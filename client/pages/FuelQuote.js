@@ -16,14 +16,25 @@ const FuelQuote = () => {
     const [address]= useState("1234 Cullen Blvd Houston, TX 77004")
     const [pricegal]= useState(3.50)
     const [total, setTotal]=useState(0)
-
+    const clientInfo ={
+        gallons: 0,
+        total: 0,
+        deliveryDate: new Date().toDateString()
+    }
+    const handleSubmit = (event) =>{
+        // event.preventDefault();
+        clientInfo.gallons=gallons,
+        clientInfo.total= gallons * pricegal,
+        clientInfo.deliveryDate= deliveryDate.toDateString()
     
+        // alert(`${clientInfo.gallons} ${clientInfo.total} ${clientInfo.deliveryDate}`)
+    };
     return (
         <body>
             <ProfileNav/>
             
             
-            <form className={styles.center}>
+            <form className={styles.center} onSubmit = { handleSubmit }>
             
                 <div>
                     
