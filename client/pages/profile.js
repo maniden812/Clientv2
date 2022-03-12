@@ -5,7 +5,7 @@ import {ProfileNav} from '../components/Navbar/ProfileNav'
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() })
 const Profile =()=> {
     const [fullname, setFullname]= useState('')
     const [address1, setaddress1]= useState('')
@@ -164,7 +164,7 @@ const Profile =()=> {
                     <br/>
 
                     { /* button for confirm */ } 
-                    <button className = { styles.button } type = "submit" > Confirm </button> 
+                    <button id="submit-button" className = { styles.button } type = "submit" > Confirm </button> 
                 </div> 
             </form> 
 
