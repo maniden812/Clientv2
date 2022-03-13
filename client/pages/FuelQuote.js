@@ -4,11 +4,18 @@ import DatePicker from 'react-datepicker'
 import styles from './FuelQuote.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
 import Hist from "../components/FuelQuoteTable/FuelQuoteTable"
+<<<<<<< HEAD
 import moment from 'moment'
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 configure({ adapter: new Adapter() });
+=======
+// import { configure } from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
+
+// configure({ adapter: new Adapter() });
+>>>>>>> d0b0b0c9b04438e96c9e27c1f152d07658c6d684
 
 const FuelQuote = () => {
     
