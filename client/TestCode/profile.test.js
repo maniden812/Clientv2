@@ -3,6 +3,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import Profile from '../pages/profile';
 import 'jsdom-global/register';
+import { WrappedBuildError } from 'next/dist/server/base-server';
 
 describe('<Profile /> with props', () => {
     const client1 = {
@@ -19,25 +20,18 @@ describe('<Profile /> with props', () => {
       expect(container.find('input[name="fullname"]').props()).toEqual({
         "maxlength": "50",
         "name": "fullname",
+        "required": true,
         "onChange": expect.any(Function),
         "type": "text",
         "value":"",
         
       });
     });
-    it('should have proper props for fullname field', () => {
-        expect(container.find('input[name="fullname"]').props()).toEqual({
-          "maxlength": "50",
-          "name": "fullname",
-          "onChange": expect.any(Function),
-          "type": "text",
-          "value": "",
-        });
-    });
     it('should have proper props for address1 field', () => {
         expect(container.find('input[name="address1"]').props()).toEqual({
           "maxlength": "100",
           "name": "address1",
+          "required": true,
           "onChange": expect.any(Function),
           "type": "text",
           "value": "",
@@ -56,6 +50,7 @@ describe('<Profile /> with props', () => {
         expect(container.find('input[name="city"]').props()).toEqual({
             "maxlength": "100",
             "name": "city",
+            "required": true,
             "onChange": expect.any(Function),
             "type": "text",
             "value": "",
@@ -66,6 +61,7 @@ describe('<Profile /> with props', () => {
             "maxlength": "9",
             "minlength": "5",
             "name": "zipcode",
+            "required": true,
             "onChange": expect.any(Function),
             "type": "text",
             "value": "",
@@ -100,3 +96,4 @@ describe('Should call onSubmit prop for valid form submission', () => {
         zipcode: client.zipcode
     });
   });
+
