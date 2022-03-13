@@ -148,13 +148,3 @@ const simulateOnChangeInput = (wrapper, inputSelector, newValue) => {
         
 
 });
-
-   
-// it("should call preventDefault", () => {
-//     const mockPreventDefault = jest.fn();
-//     const mockEvent = {
-//       preventDefault: mockPreventDefault
-//     };
-//     wrapper.instance().handleSubmit(mockEvent);
-//     expect(mockPreventDefault).toHaveBeenCalled();
-//   });
