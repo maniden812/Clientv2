@@ -1,4 +1,5 @@
 import React, { Component , useState} from 'react'
+import moment from 'moment';
 import styles from './profile.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
 // import { ClientRequest } from 'http'
@@ -47,6 +48,7 @@ const Profile =()=> {
                     <label > Full Name </label>  
                     <br/>
                     <input type = 'text' 
+                    id ='fl'
                     name="fullname"
                     maxlength = '50' 
                     required
@@ -60,6 +62,7 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="address1"
+                    id ='a1'
                     required
                     value = { address1 } 
                     maxlength = '100' 
@@ -72,6 +75,7 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="address2"
+                    id ='a2'
                     value = { address2 } 
                     maxlength = '100' 
                     onChange={(a2)=>setaddress2(a2.target.value)}/> 
@@ -83,6 +87,7 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="city"
+                    id ='city'
                     value = { city } 
                     required
                     maxlength = '100' 
@@ -93,7 +98,7 @@ const Profile =()=> {
                     { /* select state */ } 
                     <label> Select State </label> 
                     {/* value = { topic } */}
-                    <select name="state" required value= {state} onChange={(st)=>setstate(st.target.value)} >
+                    <select name="state" required id ='st'value= {state} onChange={(st)=>setstate(st.target.value)} >
 
                     <option value = "AL" > AL </option> 
                     <option value = "AK" > AK </option> 
@@ -155,6 +160,7 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="zipcode"
+                    id ='zip'
                     required
                     value = { zipcode } 
                     maxlength = '9' 
