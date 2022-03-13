@@ -7,25 +7,40 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 Enzyme.configure({ adapter: new Adapter() });
 const Profile =()=> {
-    const [fullname, setFullname]= useState('')
-    const [address1, setaddress1]= useState('')
-    const [address2, setaddress2]= useState('')
-    const [city, setCity]= useState('')
-    const [state, setstate]=useState('')
-    const [zipcode, setzipcode]= useState('')
+    const [addFormData, setFormData]= useState({
+        fullname: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zipcode: ''
+    
+    })
+   
 
-    const [client]= useState({
+    const handleFormChange= (event)=>{
+        event.preventDefault();
+
+        const fieldName= event.target.getAttribute('name');
+        const fieldValue= event.target.value;
+
+        const newFormData= {...addFormData};
+        newFormData[fieldName]= fieldValue;
+
+        setFormData(newFormData);
+    }
 
     const handleSubmit = (event) =>{
-        // event.preventDefault();
-        client.fullname= fullname,
-        client.address1= address1,
-        client.address2= address2,
-        client.city= city,
-        client.state= state,
-        client.zipcode= zipcode
-    
-        alert(`${client.fullname} ${client.address1} ${client.address2} ${client.city} ${client.state} ${client.zipcode}`)
+        event.preventDefault();
+        const newClient= {
+            fullname: addFormData.fullname,
+            address1: addFormData.address1,
+            address2: addFormData.address2,
+            city: addFormData.city,
+            state: addFormData.state,
+            zipcode: addFormData.zipcode
+        };
+        // alert(`${newClient.fullname} ${newClient.address1} ${newClient.address2} ${newClient.city} ${newClient.state} ${newClient.zipcode}`)
     };
 
     return ( 
@@ -40,10 +55,9 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="fullname"
+                    // value = { fullname } 
                     maxlength = '50' 
-                    required
-                    value = {fullname}
-                    onChange={(fn)=>setFullname(fn.target.value)}/> 
+                    onChange = { handleFormChange }/> 
                     <br/>
                     <br/>
 
@@ -52,10 +66,9 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="address1"
-                    required
-                    value = { address1 } 
+                    // value = { address1 } 
                     maxlength = '100' 
-                    onChange={(a1)=>setaddress1(a1.target.value)}/> 
+                    onChange = { handleFormChange }/> 
                     <br/>
                     <br/>
 
@@ -64,9 +77,9 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="address2"
-                    value = { address2 } 
+                    // value = { address2 } 
                     maxlength = '100' 
-                    onChange={(a2)=>setaddress2(a2.target.value)}/> 
+                    onChange = { handleFormChange }/> 
                     <br/>
                     <br/>
 
@@ -75,18 +88,16 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="city"
-                    value = { city } 
-                    required
+                    // value = { city } 
                     maxlength = '100' 
-                    onChange={(c)=>setCity(c.target.value)}/> 
+                    onChange = {handleFormChange}/> 
                     <br/>
                     <br/>
 
                     { /* select state */ } 
                     <label> Select State </label> 
                     {/* value = { topic } */}
-                    <select name="state" required value= {state} onChange={(st)=>setstate(st.target.value)} >
-
+                    <select name="state" onChange = { handleFormChange } >
                     <option value = "AL" > AL </option> 
                     <option value = "AK" > AK </option> 
                     <option value = "AZ" > AZ </option> 
@@ -147,11 +158,10 @@ const Profile =()=> {
                     <br/>
                     <input type = 'text' 
                     name="zipcode"
-                    required
-                    value = { zipcode } 
+                    // value = { zipcode } 
                     maxlength = '9' 
                     minlength = '5' 
-                    onChange={(z)=>setzipcode(z.target.value)}/> 
+                    onChange = { handleFormChange }/> 
                     <br/>
                     <br/>
 
@@ -161,9 +171,7 @@ const Profile =()=> {
             </form> 
 
         </body>
-        
     )
-    
 }
     
 
