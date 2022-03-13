@@ -1,57 +1,102 @@
 
-// function checkProfile() {
-//     var fullName = document.getElementById('fullName').value;
-//     var address1 = document.getElementById('address1').value;
-//     var address2 = document.getElementById('address2').value;
-//     var city = document.getElementById('city').value;
-//     var state = document.getElementById('state').value;
-//     var zipcode = document.getElementById('zipcode').value;
-
-//     var errorMsg = '';
-
-//     if (fullName.length === 0) {
-//         errorMsg = 'Empty Full Name\n';
-//     }
-//     if (address1 === 0) {
-//         errorMsg = 'Empty Address 1\n';
-//     }
-//     if (city === 0) {
-//         errorMsg = 'Empty City\n';
-//     }
-//     if (state === 0) {
-//         errorMsg = 'Empty State\n';
-//     }
-//     if (zipcode === 0) {
-//         errorMsg = 'Empty Zipcode\n';
-//     }
-// }
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-
 import Profile from '../pages/profile';
-// import TestRenderer from 'react-test-renderer';
-// import { shallow } from 'enzyme';
-//const profilemodule = require('../pages/profile');
-test('check if values are empty', () => {
-     const wrapper = shallow( < Profile /> );
-    // const instance = wrapper.instance();
-    expect(true).toBe(true);
-    // const [fullname, address1, address2, city, state, zipcode] = Profile(fullname, address1, address2, city, state, zipcode);
+import 'jsdom-global/register';
 
-    // expect(fullname).not.toBeNull();
-    // expect(fullname).toBeLessThanOrEqual(50);
-
-    // expect(address1).not.toBeNull();
-    // expect(address1).toBeLessThanOrEqual(100);
-
-    // expect(address2).toBeLessThanOrEqual(100);
-
-    // expect(city).not.toBeNull();
-    // expect(city).toBeLessThanOrEqual(100);
-
-    // expect(state).not.toBeNull();
-
-    // expect(zipcode).not.toBeNull();
-    // expect(zipcode).toBeLessThanOrEqual(9);
-    // expect(zipcode).toBeGreaterThanOrEqual(5);
+describe('<Profile /> with props', () => {
+    const client1 = {
+        fullname: 'hello',
+        address1: 'jfkhsdajhf',
+        address2: 'fdjlkas',
+        city: 'houston',
+        state: 'TX',
+        zipcode: '77003'
+    };
+    const container = shallow(<Profile {...client1} />);
+  
+    it('should have proper props for fullname field', () => {
+      expect(container.find('input[name="fullname"]').props()).toEqual({
+        "maxlength": "50",
+        "name": "fullname",
+        "onChange": expect.any(Function),
+        "type": "text",
+        "value":"",
+        
+      });
+    });
+    it('should have proper props for fullname field', () => {
+        expect(container.find('input[name="fullname"]').props()).toEqual({
+          "maxlength": "50",
+          "name": "fullname",
+          "onChange": expect.any(Function),
+          "type": "text",
+          "value": "",
+        });
+    });
+    it('should have proper props for address1 field', () => {
+        expect(container.find('input[name="address1"]').props()).toEqual({
+          "maxlength": "100",
+          "name": "address1",
+          "onChange": expect.any(Function),
+          "type": "text",
+          "value": "",
+        });
+    });
+    it('should have proper props for address2 field', () => {
+        expect(container.find('input[name="address2"]').props()).toEqual({
+            "maxlength": "100",
+            "name": "address2",
+            "onChange": expect.any(Function),
+            "type": "text",
+            "value": "",
+        });
+    });
+    it('should have proper props for city field', () => {
+        expect(container.find('input[name="city"]').props()).toEqual({
+            "maxlength": "100",
+            "name": "city",
+            "onChange": expect.any(Function),
+            "type": "text",
+            "value": "",
+        });
+    });
+    it('should have proper props for zipcode field', () => {
+        expect(container.find('input[name="zipcode"]').props()).toEqual({
+            "maxlength": "9",
+            "minlength": "5",
+            "name": "zipcode",
+            "onChange": expect.any(Function),
+            "type": "text",
+            "value": "",
+        });
+    });
 });
+describe('Should call onSubmit prop for valid form submission', () => {
+    const client = {
+        fullname: 'Ma Che Vin',
+        address1: 'PGH',
+        address2: 'Cullen',
+        city: 'Austin',
+        state: 'NY',
+        zipcode: '77293'
+    }
+  
+    const onSubmitSpy = jest.fn();
+  
+    const wrapper = shallow(
+      <Profile client={client} onSubmit={onSubmitSpy} />
+    );
+  
+    wrapper.find('form').simulate('submit', { preventDefault: () => {} });
+  
+    // expect(wrapper.state('error')).toBe('');
+    expect(onSubmitSpy).toHaveBeenLastCalledWith({
+        fullname: client.fullname,
+        address1: client.address1,
+        address2: client.address2,
+        city: client.city,
+        state: client.state,
+        zipcode: client.zipcode
+    });
+  });
