@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import styles from './FuelQuote.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
 import Hist from "../components/FuelQuoteTable/FuelQuoteTable"
+import moment from 'moment'
 // import { configure } from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 
@@ -19,15 +20,19 @@ const FuelQuote = () => {
     const clientInfo ={
         gallons: 0,
         total: 0,
-        deliveryDate: new Date().toDateString()
+        deliveryDate: new Date()
     }
     const handleSubmit = (event) =>{
         // event.preventDefault();
         clientInfo.gallons=gallons,
         clientInfo.total= gallons * pricegal,
-        clientInfo.deliveryDate= deliveryDate.toDateString()
+        clientInfo.deliveryDate= [deliveryDate.getMonth()+1,deliveryDate.getDate(),deliveryDate.getFullYear()].join('/')
     
         // alert(`${clientInfo.gallons} ${clientInfo.total} ${clientInfo.deliveryDate}`)
+    };
+    const yesterday = moment().subtract(1, 'day');
+    const disablePastDt = current => {
+        return current.isAfter(yesterday);
     };
     return (
         <body>
@@ -59,11 +64,12 @@ const FuelQuote = () => {
                     {/* date picker */}
                     <label><br/>Delivery Date<br/></label>
                     <DatePicker
-                    placeholderText="Select Date"
+                    placeholderText="Select Date"     
+                    minDate= {moment().toDate()}
+                    onChange={ (d)=>setdeliveryDate(d)}
                     dateFormat="MM/dd/yyyy"
                     selected={deliveryDate}
                     required
-                    onChange={ (d)=>setdeliveryDate(d)}
                     name="deliveryDate"
                     />
                     <br/>
@@ -86,7 +92,7 @@ const FuelQuote = () => {
                         name= "Machevin"
                         address= {address}
                         gallons= {gallons}
-                        deliveryDate={deliveryDate.toDateString()}
+                        deliveryDate={[deliveryDate.getMonth()+1, deliveryDate.getDate(), deliveryDate.getFullYear()].join('/')}
                         total= {gallons * pricegal}
                     />
                 </div>
