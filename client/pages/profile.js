@@ -15,14 +15,6 @@ const Profile =()=> {
     const [zipcode, setzipcode]= useState('')
 
     const [client]= useState({
-        fullname: '',
-        address1: '',
-        address2: '',
-        city: '',
-        state: '',
-        zipcode: ''
-    
-    })
 
     const handleSubmit = (event) =>{
         // event.preventDefault();
