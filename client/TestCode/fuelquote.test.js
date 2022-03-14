@@ -1,99 +1,77 @@
-// //test form for the fuel quote form and make it verified
-// //pricing module and make sure it has good math
+//test form for the fuel quote form and make it verified
+//pricing module and make sure it has good math
 
 // const { default: FuelQuote } = require('../pages/FuelQuote');
 // const fuelForm = require('../pages/FuelQuote');
 // // const sum = require('./pricingmodule');
 
-// test('check if values fail, ', () => {
-//     const wrapper = shallow( < FuelQuote /> );
-//     const [gallons, date] = Profile('me', 'me', '', 'noice', 'me', 'yesss');
-
-//     expect(fullname).not.toBeNull();
-//     expect(fullname).toBeLessThanOrEqual(50);
-
-//     expect(address1).not.toBeNull();
-//     expect(address1).toBeLessThanOrEqual(100);
-
-//     expect(address2).toBeLessThanOrEqual(100);
-
-//     expect(city).not.toBeNull();
-//     expect(city).toBeLessThanOrEqual(100);
-
-//     expect(state).not.toBeNull();
-
-//     expect(zipcode).not.toBeNull();
-//     expect(zipcode).toBeLessThanOrEqual(9);
-//     expect(zipcode).toBeGreaterThanOrEqual(5);
-
+// test('Should return a good report', () => {
+    
 // });
 // test('Checks the price of out of state price', () => {
 //     expect(FuelQuote()).toBeCloseTo(3042.9,5);
 // });
 
-// // function fuelQuoteCheck(){
-// //     // var name  = document.getElementById('name').value;
-// //     var gallons   = document.getElementById('gallons').value;
-// //     var date = document.getElementById('date').value;
-// //     var errorMsg = '';
+import React from 'react';
+import { shallow, mount, render } from 'enzyme';
+import FuelQuote from '../pages/FuelQuote';
+import DatePicker from 'react-datepicker';
 
-// //     if (gallons.length===0){
-// //         errorMsg += 'Empty gallons\n';    
-// //     } else if (isNaN(Number(age))){
-// //         errorMsg += 'Invalid gallons - enter a number\n';    
-// //     }
-// //     currentDate= new Date();
+describe('<FuelQuote /> with proper props', () => {
+    const client2 = {
+        gallons: 2,
+        address: '1234 Cullen Blvd Houston, TX 77004', //validate that its just there
+        deliveryDate: '05/21/2022',
+        pricegal: 5.00, //validate that its just there
+        total: {gallons}*{pricegal} //validate that its just there
+    };
 
-// //     if (date.getFullYear()<currentDate.getFullYear()){
-// //         errorMsg = 'Year has passed';    
-// //     } 
-// //     else if (date.getFullYear()==currentDate.getFullYear()){
-// //         if(date.getMonth()<currentDate.getMonth()){
-// //         errorMsg = 'Month has passed';    
-// //        }
-// //     }
-// //     else if (date.getFullYear()==currentDate.getFullYear()
-// //         && (date.getMonth()==currentDate.getMonth())){
-// //             if(date.getDate()<currentDate.getDate()){
-// //                 errorMsg = 'Day has passed';    
-// //                }
-// //        }
-    
-    
+    const container = shallow(<FuelQuote {...client2} />);
+    it('should have proper props for gallons field', () => {
+        expect(container.find('input[name="gallons"]').props()).toEqual({
+            "type":"number",
+            "min":"0",
+            "name":"gallons",
+            "required":true,
+            "value":0,
+            "onChange": expect.any(Function),
+        });
+    });
 
-// //     if (errorMsg.length > 0){
-// //         alert(errorMsg);
-// //         return false;
-// //     }
-// // }
-// // export default function SignIn({ csrfToken }) {
-// //   return (
-// //     <form method="post" onSubmit={() => signIn("credentials", {
-// //         redirect: false, 
-// //         email: "test",
-// //         password: "test",
-// //       })
-// //       .then((error) => console.log(error))
-// //       .catch((error) => console.log(error))} >
-// //       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-// //       <label>
-// //         Username
-// //         <input name="username" type="text" />
-// //       </label>
-// //       <label>
-// //         Password
-// //         <input name="password" type="password" />
-// //       </label>
-// //       <button type="submit">Sign in</button>
-// //     </form>
-// //   )
-// // }
+    it('should have proper props for address field', () => {
+        expect(container.find('input[name="address"]').props()).toEqual({
+        "address":"input",
+        "type":"text",
+        "placeholder":"Enter Delivery Address",
+        "value":"1234 Cullen Blvd Houston, TX 77004", 
+        "readOnly":true,
+        "name":"address",
+        });
+    });   
 
-// // // This is the recommended way for Next.js 9.3 or newer
-// // export async function getServerSideProps(context) {
-// //   return {
-// //     props: {
-// //       csrfToken: await getCsrfToken(context),
-// //     },
-// //   }
-// // }
+    it('should have proper props for deliveryDate field', () => {
+        expect(container.find('DatePicker[name="deliveryDate"]').props()).toEqual({
+            "placeholderText":"Select Date",
+            "dateFormat":"MM/dd/yyyy",
+            "selected":"deliveryDate",
+            "name":"deliveryDate",
+            "onChange": expect.any(Function),
+            "required": true
+        });
+    });
+
+    it('should have proper props for pricegal field', () => {
+        expect(container.find('input[name="pricegal"]').props()).toEqual({
+        "price": "input",
+        "type": "number",
+        "value": 3.50,
+        "name": "pricegal",
+        "placeholder":"Suggested Price",
+        "readOnly": true,
+        });
+    });
+
+    it('should have proper props for total field', () => {
+        expect(client2.total.toEqual(gallons*pricegal));
+    });
+});
