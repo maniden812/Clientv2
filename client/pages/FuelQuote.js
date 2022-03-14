@@ -1,19 +1,19 @@
 import React, { Component , useState} from 'react'
 import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import styles from './FuelQuote.module.css'
 import {ProfileNav} from '../components/Navbar/ProfileNav'
 import Hist from "../components/FuelQuoteTable/FuelQuoteTable"
 import moment from 'moment'
-// import { configure } from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
-// configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() });
 
 const FuelQuote = () => {
     
     const [gallons, setGallons]= useState(0)
-    const [deliveryDate, setdeliveryDate]= useState(new Date())
+    const [deliveryDate, setdeliveryDate]= useState("2022-03-13")
     const [address]= useState("1234 Cullen Blvd Houston, TX 77004")
     const [pricegal]= useState(3.50)
     const [total, setTotal]=useState(0)
@@ -26,8 +26,8 @@ const FuelQuote = () => {
         // event.preventDefault();
         clientInfo.gallons=gallons,
         clientInfo.total= gallons * pricegal,
-        clientInfo.deliveryDate= [deliveryDate.getMonth()+1,deliveryDate.getDate(),deliveryDate.getFullYear()].join('/')
-    
+        //clientInfo.deliveryDate= [deliveryDate.getMonth()+1,deliveryDate.getDate(),deliveryDate.getFullYear()].join('/')
+        clientInfo.deliveryDate = deliveryDate
         // alert(`${clientInfo.gallons} ${clientInfo.total} ${clientInfo.deliveryDate}`)
     };
     const yesterday = moment().subtract(1, 'day');
@@ -49,6 +49,7 @@ const FuelQuote = () => {
                     min="0"
                     value={gallons} 
                     required
+                    name = "gallons"
                     onChange={(g)=>setGallons(g.target.value)}/>
                     <br/>
                     
@@ -58,17 +59,19 @@ const FuelQuote = () => {
                     type="text" 
                     placeholder="Enter Delivery Address" 
                     value= {address} 
+                    name = "address"
                     readOnly= {true}/>
                     <br/>
 
                     {/* date picker */}
                     <label><br/>Delivery Date<br/></label>
-                    <DatePicker
+                    <input
+                    type = "date"
                     placeholderText="Select Date"     
-                    minDate= {moment().toDate()}
-                    onChange={ (d)=>setdeliveryDate(d)}
-                    dateFormat="MM/dd/yyyy"
-                    selected={deliveryDate}
+                    onChange={(g)=>setdeliveryDate(g.target.value)}
+                    min="2022-03-13"
+                    value={deliveryDate}
+
                     required
                     name="deliveryDate"
                     />
@@ -78,6 +81,7 @@ const FuelQuote = () => {
                     <label><br/>Suggested Price/Gallon<br/></label>
                     <input price="input" 
                     type="number" 
+                    name = "pricegal"
                     placeholder="Suggested Price" 
                     value= {pricegal} 
                     readOnly= {true}/>
@@ -92,7 +96,9 @@ const FuelQuote = () => {
                         name= "Machevin"
                         address= {address}
                         gallons= {gallons}
-                        deliveryDate={[deliveryDate.getMonth()+1, deliveryDate.getDate(), deliveryDate.getFullYear()].join('/')}
+
+                        deliveryDate={deliveryDate}
+
                         total= {gallons * pricegal}
                     />
                 </div>
