@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import React from 'react';
 import styles from "./FuelQuoteTable.module.css"
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+configure({ adapter: new Adapter() });
 function FuelQuoteTable(props){
     return(
             <table className={styles.allofit}>
