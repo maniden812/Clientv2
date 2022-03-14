@@ -5,15 +5,139 @@
 // const fuelForm = require('../pages/FuelQuote');
 // // const sum = require('./pricingmodule');
 
-// test('check if values fail, ', () => {
-//     const wrapper = shallow( < FuelQuote /> );
-//     const [gallons, date] = Profile('me', 'me', '', 'noice', 'me', 'yesss');
+    
+// });
+// test('Checks the price of out of state price', () => {
+//     expect(FuelQuote()).toBeCloseTo(3042.9,5);
+// });
 
-//     expect(fullname).not.toBeNull();
-//     expect(fullname).toBeLessThanOrEqual(50);
+import React from 'react';
+import { shallow, mount, render } from 'enzyme';
+import 'jsdom-global/register';
+import FuelQuote from '../pages/FuelQuote';
+import DatePicker from 'react-datepicker';
+import { WrappedBuildError } from 'next/dist/server/base-server';
+import { useSession } from "next-auth/react"
+import { SessionProvider } from "next-auth/react"
 
-//     expect(address1).not.toBeNull();
-//     expect(address1).toBeLessThanOrEqual(100);
+
+describe('<FuelQuote /> with proper props', () => {
+    const client2 = {
+        gallons: 2,
+        address: '1234 Cullen Blvd Houston, TX 77004', //validate that its just there
+        deliveryDate: "2022-03-13",
+        pricegal: 5.00, //validate that its just there
+        total: 10 //validate that its just there
+    };
+
+    const container = shallow(<FuelQuote {...client2} />);
+    it('should have proper props for gallons field', () => {
+        expect(container.find('input[name="gallons"]').props()).toEqual({
+            "type":"number",
+            "min":"0",
+            "name":"gallons",
+            "required":true,
+            "value":0,
+            "onChange": expect.any(Function),
+        });
+    });
+
+    it('should have proper props for address field', () => {
+        expect(container.find('input[name="address"]').props()).toEqual({
+        "address":"input",
+        "type":"text",
+        "placeholder":"Enter Delivery Address",
+        "value":"1234 Cullen Blvd Houston, TX 77004", 
+        "name":"address",
+        "readOnly":true,
+        
+        });
+    });   
+
+    it('should have proper props for deliveryDate field', () => {
+        //const datePicker = component.find('DatePicker')
+        expect(container.find('input[name="deliveryDate"]').props()).toEqual({
+            "type": "date",
+            "placeholderText":"Select Date",
+            "min":"2022-03-13",
+            "onChange": expect.any(Function),
+            "value":"2022-03-13",
+            "required":true,
+            "name":"deliveryDate"
+            
+            });
+        // expect(container.find('DatePicker[name="deliveryDate"]').value()).toEqual({
+        //     "placeholderText":"Select Date",
+        //     "dateFormat":"MM/dd/yyyy",
+        //     "selected":"deliveryDate",
+        //     "name":"deliveryDate",
+        //     "onChange": expect.any(Function),
+        //     "required": true
+        // });
+    });
+
+    it('should have proper props for pricegal field', () => {
+        expect(container.find('input[name="pricegal"]').props()).toEqual({
+        "price": "input",
+        "type": "number",
+        "value": 3.50,
+        "name": "pricegal",
+        "placeholder":"Suggested Price",
+        "readOnly": true,
+        });
+    });
+
+    it('should have proper props for total field', () => {
+        expect(client2.total).toEqual(client2.gallons*client2.pricegal);
+    });
+    // describe('The form is submitted when the click event is fired by simulated click on the submit button', () => {
+    
+    //     it('tests if the submit button is triggering an event', () => {
+    //         const mockCallBack = jest.fn();
+    //         const wrapper = shallow(<FuelQuote onSubmit={mockCallBack()} />);
+    //         wrapper.find("#submit-button").simulate("click");
+    //         expect(mockCallBack).toHaveBeenCalledTimes(1);
+    //     });
+    // });
+});
+// describe('The form is submitted when the click event is fired by simulated click on the submit button', () => {
+    
+//     it('tests if the submit button is triggering an event', () => {
+//         const mockCallBack = jest.fn();
+//         const wrapper = shallow(<FuelQuote onSubmit={mockCallBack()} />);
+//         wrapper.find("#submit").simulate("click", {keyCode: 27});
+//         expect(mockCallBack).toHaveBeenCalledTimes(1);
+//     });
+// });
+// describe('the form submitting info with the button', () => {
+//     const simulateOnChangeInput = (wrapper, inputSelector, newValue) => {
+//         const input = wrapper.find(inputSelector);
+//         input.simulate("change", {
+//             target: { value: newValue },
+//         });
+        
+//         return wrapper.find(inputSelector);
+//     };
+        
+//         it("fill the form with values and then submit the form", () => {
+//             const wrapper = shallow(<FuelQuote />);
+        
+//             const gal = simulateOnChangeInput(
+//             wrapper,
+//             "#gal",
+//             2
+//             );
+            
+//             expect(gal.props().value).toBe(2);
+        
+//             wrapper.find("#submit").simulate("submit");
+        
+//             expect(wrapper.find("#gal").props().value).toBe(2);
+
+//         });
+            
+    
+// });
 
 //     expect(address2).toBeLessThanOrEqual(100);
 
