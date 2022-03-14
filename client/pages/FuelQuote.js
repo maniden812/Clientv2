@@ -71,6 +71,7 @@ const FuelQuote = () => {
                     onChange={(g)=>setdeliveryDate(g.target.value)}
                     min="2022-03-13"
                     value={deliveryDate}
+
                     required
                     name="deliveryDate"
                     />
@@ -95,7 +96,9 @@ const FuelQuote = () => {
                         name= "Machevin"
                         address= {address}
                         gallons= {gallons}
+
                         deliveryDate={deliveryDate}
+
                         total= {gallons * pricegal}
                     />
                 </div>
