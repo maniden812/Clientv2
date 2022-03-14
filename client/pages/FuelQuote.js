@@ -13,7 +13,7 @@ configure({ adapter: new Adapter() });
 const FuelQuote = () => {
     
     const [gallons, setGallons]= useState(0)
-    const [deliveryDate, setdeliveryDate]= useState(new Date())
+    const [deliveryDate, setdeliveryDate]= useState("2022-03-13")
     const [address]= useState("1234 Cullen Blvd Houston, TX 77004")
     const [pricegal]= useState(3.50)
     const [total, setTotal]=useState(0)
@@ -26,8 +26,8 @@ const FuelQuote = () => {
         // event.preventDefault();
         clientInfo.gallons=gallons,
         clientInfo.total= gallons * pricegal,
-        clientInfo.deliveryDate= [deliveryDate.getMonth()+1,deliveryDate.getDate(),deliveryDate.getFullYear()].join('/')
-    
+        //clientInfo.deliveryDate= [deliveryDate.getMonth()+1,deliveryDate.getDate(),deliveryDate.getFullYear()].join('/')
+        clientInfo.deliveryDate = deliveryDate
         // alert(`${clientInfo.gallons} ${clientInfo.total} ${clientInfo.deliveryDate}`)
     };
     const yesterday = moment().subtract(1, 'day');
@@ -65,12 +65,12 @@ const FuelQuote = () => {
 
                     {/* date picker */}
                     <label><br/>Delivery Date<br/></label>
-                    <DatePicker
+                    <input
+                    type = "date"
                     placeholderText="Select Date"     
-                    minDate= {moment().toDate()}
-                    onChange={ (d)=>setdeliveryDate(d)}
-                    dateFormat="MM/dd/yyyy"
-                    selected={deliveryDate}
+                    onChange={(g)=>setdeliveryDate(g.target.value)}
+                    min="2022-03-13"
+                    value={deliveryDate}
                     required
                     name="deliveryDate"
                     />
@@ -95,7 +95,7 @@ const FuelQuote = () => {
                         name= "Machevin"
                         address= {address}
                         gallons= {gallons}
-                        deliveryDate={[deliveryDate.getMonth()+1, deliveryDate.getDate(), deliveryDate.getFullYear()].join('/')}
+                        deliveryDate={deliveryDate}
                         total= {gallons * pricegal}
                     />
                 </div>
