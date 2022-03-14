@@ -43,8 +43,9 @@ describe('<FuelQuote /> with proper props', () => {
         "type":"text",
         "placeholder":"Enter Delivery Address",
         "value":"1234 Cullen Blvd Houston, TX 77004", 
-        "readOnly":true,
         "name":"address",
+        "readOnly":true,
+        
         });
     });   
 
@@ -73,8 +74,45 @@ describe('<FuelQuote /> with proper props', () => {
     it('should have proper props for total field', () => {
         expect(client2.total).toEqual(client2.gallons*client2.pricegal);
     });
+    // describe('The form is submitted when the click event is fired by simulated click on the submit button', () => {
+    
+    //     it('tests if the submit button is triggering an event', () => {
+    //         const mockCallBack = jest.fn();
+    //         const wrapper = shallow(<FuelQuote onSubmit={mockCallBack()} />);
+    //         wrapper.find("#submit-button").simulate("click");
+    //         expect(mockCallBack).toHaveBeenCalledTimes(1);
+    //     });
+    // });
 });
+describe('the form submitting info with the button', () => {
+    const simulateOnChangeInput = (wrapper, inputSelector, newValue) => {
+        const input = wrapper.find(inputSelector);
+        input.simulate("change", {
+            target: { value: newValue },
+        });
+        
+        return wrapper.find(inputSelector);
+        };
+        
+        it("fill the form with values and then submit the form", () => {
+            const wrapper = shallow(<FuelQuote />);
+        
+            const gal = simulateOnChangeInput(
+            wrapper,
+            "#gal",
+            2
+            );
+            
+            expect(gal.props().value).toBe(2);
+        
+            wrapper.find("#submit-button").simulate("submit");
+        
+            expect(wrapper.find("#gal").props().value).toBe(2);
 
+        });
+            
+    
+    });
 
 //     expect(address2).toBeLessThanOrEqual(100);
 
